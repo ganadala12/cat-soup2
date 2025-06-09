@@ -8,13 +8,16 @@
 #define HME_POS 1
 #define BWL_POS (ROOM_WIDTH - 2)
 
+//방이랑 스테이터스창
+
+//상태창 먼저.
 void statusandroom(char name[], int soup, int cp, int gibun,
-    int chnmil) {
+    int chnmil, int pos, int cher, int scratcher_pos, int tower, int tower_pos) {
 
     printf("==================== 현재 상태 ===================\n");
     printf("현재까지 만든 수프: %d개\n", soup);
     printf("CP: %d 포인트\n", cp);
-    printf("%s의 기분(0~3): %d\n", name, gibun):
+    printf("%s의 기분(0~3): %d\n", name, gibun);
 
     if (gibun == 0) printf("기분이 매우 나쁩니다.\n");
     else if (gibun == 1) printf("심심해 합니다.\n");
@@ -30,7 +33,24 @@ void statusandroom(char name[], int soup, int cp, int gibun,
     printf("==================================================\n");
 
 
+    //방 코드
+    printf("###############\n#");
+    for (int i = 0; i < ROOM_WIDTH; i++) {
+        if (i == HME_POS) printf("H");
+        else if (i == BWL_POS) printf("B");
+        else if (cher && i == scratcher_pos) printf("S");
+        else if (tower && i == tower_pos) printf("T");
+        else printf(" ");
+    }
+    printf("#\n#");
+    for (int i = 0; i < ROOM_WIDTH; i++) {
+        if (i == pos) printf("C");
+        else printf(" ");
+    }
+    printf("#\n###############\n");
 }
+
+
 int main(void) {
 
     int chnmil = 2;     
