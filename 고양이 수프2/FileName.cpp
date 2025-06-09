@@ -53,7 +53,7 @@ void statusandroom(char name[], int soup, int cp, int gibun,
 //2-2 기분변환
 int gibunupdate(int gibun) {
     int dice = rand() % 6 + 1;
-    printf("주사위 눈이 4이하면 기분이 안좋아집니다.");
+    printf("주사위 눈이 4이하면 기분이 안좋아집니다.\n");
     printf("기분 주사위를 굴립니다...%d\n", dice);
 
     if (dice <= 4 && gibun > 0) {
@@ -96,6 +96,32 @@ int makesoup(int pos) {
         return 1;
     }
     return 0;
+}
+
+//2-5 상호작용 결과?
+int interact(int chnmil) {
+    int choice = -1;
+    while (choice != 0 && choice != 1) {
+        printf("\n 무엇을 하시겠습니까?");
+        printf("0. 아무것도 안 함\n1. 턱 긁어주기\n>> ");
+        scanf_s("%d", &choice);
+    }
+    int dice = rand() % 6 + 1;
+
+    if (choice == 1) {
+        printf("고양이의 턱을 긁어주었습니다. 주사위: %d\n", dice);
+        if (dice >= 5 && chnmil < 4) {
+            printf("친밀도가 상승했습니다!\n");
+            return chnmil + 1;
+        }
+        else {
+            printf("고양이가 무반응입니다.\n");
+        }
+    }
+    else {
+        printf("아무것도 하지 않았습니다.\n");
+    }
+    return chnmil;
 }
 
 //메인함수
@@ -160,6 +186,9 @@ int main(void) {
             gibun++;
             printf("캣타워에서 휴식을 취하며 기분이 좋아졌습니다!\n");
         }
+
+        // 상호작용 결과
+        chnmil = interact(chnmil);
 
         Sleep(1500);
         turn++;
