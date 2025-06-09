@@ -148,9 +148,7 @@ int main(void) {
         if (choice == 1) {
             printf("고양이의 턱을 긁어주었습니다. 주사위: %d\n", dice);
             if (dice >= 5 && chnmil < 4) {
-                printf("친밀도가 상승했습니다!\n");
-                return chnmil + 1;
-            }
+                printf("친밀도가 상승했습니다!\n");}
             else {
                 printf("고양이가 무반응입니다.\n");
             }
@@ -190,6 +188,45 @@ int main(void) {
             printf("3. 스크래처: 4 CP%s\n", (cher > 0 ? " (품절)" : ""));
             printf("4. 캣 타워: 6 CP%s\n>> ", (tower > 0 ? " (품절)" : ""));
             scanf_s("%d", &buy);
+
+            if (buy == 1) {
+                if (toymouse > 0) printf("장난감 쥐는 이미 구매했습니다.\n");
+                else if (cp >= 1) {
+                    toymouse = 1;
+                    cp -= 1;
+                    printf("장난감 쥐를 구매했습니다!\n");
+                }
+                else printf("CP가 부족합니다.\n");
+            }
+            else if (buy == 2) {
+                if (laser > 0) printf("레이저 포인터는 이미 구매했습니다.\n");
+                else if (cp >= 2) {
+                    laser = 1;  
+                    cp -= 2;
+                    printf("레이저 포인터를 구매했습니다!\n");
+                }
+                else printf("CP가 부족합니다.\n");
+            }
+            else if (buy == 3) {
+                if (cher > 0) printf("스크래처는 이미 구매했습니다.\n");
+                else if (cp >= 4) {
+                    cher = 1;
+                    scratcher_pos = 2;
+                    cp -= 4;
+                    printf("스크래처를 구매했습니다!\n");
+                }
+                else printf("CP가 부족합니다.\n");
+            }
+            else if (buy == 4) {
+                if (tower > 0) printf("캣 타워는 이미 구매했습니다.\n");
+                else if (cp >= 6) {
+                    tower = 1;
+                    tower_pos = 10;
+                    cp -= 6;
+                    printf("캣 타워를 구매했습니다!\n");
+                }
+                else printf("CP가 부족합니다.\n");
+            }
         }
 
         //기분
