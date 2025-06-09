@@ -98,11 +98,11 @@ int makesoup(int pos) {
     return 0;
 }
 
-//2-5 상호작용 결과?
+//2-5 상호작용 입력
 int interact(int chnmil) {
     int choice = -1;
     while (choice != 0 && choice != 1) {
-        printf("\n 무엇을 하시겠습니까?");
+        printf("\n 무엇을 하시겠습니까?\n");
         printf("0. 아무것도 안 함\n1. 턱 긁어주기\n>> ");
         scanf_s("%d", &choice);
     }
@@ -159,6 +159,13 @@ int main(void) {
 
         //상태창
         statusandroom(name, soup, cp, gibun, chnmil, pos, cher, scratcher_pos, tower, tower_pos);
+
+        // 2-7 CP 생산
+        int earned_cp = (gibun - 1 >= 0 ? gibun - 1 : 0) + chnmil;
+        cp += earned_cp;
+        printf("%s의 기분과 친밀도에 따라서 CP가 %d 포인트 생산되었습니다.\n", name, earned_cp);
+        printf("보유 CP: %d 포인트\n", cp);
+
         //기분
         gibun = gibunupdate(gibun);
         //이동
@@ -187,7 +194,7 @@ int main(void) {
             printf("캣타워에서 휴식을 취하며 기분이 좋아졌습니다!\n");
         }
 
-        // 상호작용 결과
+        // 상호작용 입력
         chnmil = interact(chnmil);
 
         Sleep(1500);
