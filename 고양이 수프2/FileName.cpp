@@ -232,6 +232,30 @@ int main(void) {
         //기분
         gibun = gibunupdate(gibun);
 
+        // 2-9 돌발퀘스트
+        if (rand() % 5 == 0) {
+            printf("\n[돌발퀘스트] %s가 고습 사료를 먹고싶다고 합니다.\n",name);
+            printf("1. 고급사료를 준다.(CP -1, 친밀도 +1)\n");
+            printf("2. 일반사료를 준다.(Cp 0 친밀도 0\n>> ");
+            int event_choice;
+            scanf_s("%d", &event_choice);
+
+            if (event_choice == 1) {
+                if (cp > 0) {
+                    cp--;
+                    if (chnmil < 4) chnmil++;
+                    printf("친밀도가 올랐습니다!\n");
+                }
+                else {
+                    printf("CP가 부족해서 고급사료를 주지 못했습니다ㅠㅠㅠㅠ\n");
+                }
+            }
+            else {
+                printf("고양이가 애옹 거립니다.\n");
+            }
+        }
+
+
         //이동
         pos = catmove(pos, chnmil);
 
