@@ -89,6 +89,15 @@ int catmove(int pos, int chnmil) {
     return pos;
 }
 
+//2-4 수프 만들기
+int makesoup(int pos) {
+    if (pos == BWL_POS) {
+        printf("고양이가 수프를 만들었습니다.\n");
+        return 1;
+    }
+    return 0;
+}
+
 //메인함수
 int main(void) {
 
