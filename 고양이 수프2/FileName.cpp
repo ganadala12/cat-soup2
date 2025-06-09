@@ -50,6 +50,21 @@ void statusandroom(char name[], int soup, int cp, int gibun,
     printf("#\n###############\n");
 }
 
+//2-2 기분변환
+int gibunupdate(int gibun) {
+    int dice = rand() % 6 + 1;
+    printf("기분 주사위를 굴립니다...%d\n", dice);
+
+    if (dice <= 4 && gibun > 0) {
+        gibun--;
+        printf("기분이 나빠졌습니다.\n");
+    }
+    else {
+        printf("기분은 그대로입니다. \n");
+    }
+    Sleep(500);
+    return gibun;
+}
 
 int main(void) {
 
@@ -77,6 +92,14 @@ int main(void) {
     printf("야옹이의 이름은 %s입니다.\n", name);
     Sleep(1000);
     system("cls");
+
+    //게임 반복부분?
+    while (1) {
+        system("cls");
+        printf("-- %d 턴 --\n", turn);
+
+        statusandroom(name,soup,cp,gibun,chnmil)
+    }
 
 	return 0;
 }
