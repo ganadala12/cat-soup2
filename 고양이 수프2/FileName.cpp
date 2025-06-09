@@ -8,7 +8,7 @@
 #define HME_POS 1
 #define BWL_POS (ROOM_WIDTH - 2)
 
-//방이랑 스테이터스창
+//방이랑 스테이터스창 2-1
 
 //상태창 먼저.
 void statusandroom(char name[], int soup, int cp, int gibun,
@@ -53,6 +53,7 @@ void statusandroom(char name[], int soup, int cp, int gibun,
 //2-2 기분변환
 int gibunupdate(int gibun) {
     int dice = rand() % 6 + 1;
+    printf("주사위 눈이 4이하면 기분이 안좋아집니다.");
     printf("기분 주사위를 굴립니다...%d\n", dice);
 
     if (dice <= 4 && gibun > 0) {
@@ -66,6 +67,29 @@ int gibunupdate(int gibun) {
     return gibun;
 }
 
+
+//2-3 고먐미 이동
+int catmove(int pos, int chnmil) {
+    int dice = rand() % 6 + 1;
+    printf("이동 주사위를 굴립니다... %d\n", dice);
+
+    if (dice >= (6 - chnmil)) {
+        if (pos < BWL_POS) {
+            pos++;
+            printf("냄비 쪽으로 이동했습니다.\n");
+        }
+    }
+    else {
+        if (pos > HME_POS) {
+            pos--;
+            printf("집 쪽으로 이동했습니다.\n");
+        }
+    }
+    Sleep(500);
+    return pos;
+}
+
+//메인함수
 int main(void) {
 
     int chnmil = 2;
@@ -102,6 +126,8 @@ int main(void) {
         statusandroom(name, soup, cp, gibun, chnmil, pos, cher, scratcher_pos, tower, tower_pos);
         //기분
         gibun = gibunupdate(gibun);
+        //이동
+        pos = catmove(pos, chnmil);
 
         Sleep(1500);
         turn++;
