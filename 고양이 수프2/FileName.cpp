@@ -180,6 +180,18 @@ int main(void) {
         printf("%s의 기분과 친밀도에 따라서 CP가 %d 포인트 생산되었습니다.\n", name, earned_cp);
         printf("보유 CP: %d 포인트\n", cp);
 
+        // 2-8 상점 기능
+        if (cp >= 1) {
+            int buy = -1;
+            printf("\n[상점] 어떤 물건을 구매하시겠습니까? (보유 CP: %d)\n", cp);
+            printf("0. 아무 것도 사지 않는다.\n");
+            printf("1. 장난감 쥐: 1 CP%s\n", (toymouse > 0 ? " (품절)" : ""));
+            printf("2. 레이저 포인터: 2 CP%s\n", (laser > 0 ? " (품절)" : ""));
+            printf("3. 스크래처: 4 CP%s\n", (cher > 0 ? " (품절)" : ""));
+            printf("4. 캣 타워: 6 CP%s\n>> ", (tower > 0 ? " (품절)" : ""));
+            scanf_s("%d", &buy);
+        }
+
         //기분
         gibun = gibunupdate(gibun);
 
