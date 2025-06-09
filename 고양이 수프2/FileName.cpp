@@ -26,6 +26,14 @@ int main(void) {
 
     srand((unsigned int)time(NULL));
 
+    printf("**** 야옹이와 수프 ver.2 ****\n");
+    printf(" /\\_/\\\n");
+    printf("  o.o\n");
+    printf("야옹이의 이름을 지어 주세요: ");
+    scanf_s("%s", name, (unsigned)_countof(name));
+    printf("야옹이의 이름은 %s입니다.\n", name);
+    Sleep(1000);
+    system("cls");
 
 	return 0;
 }
