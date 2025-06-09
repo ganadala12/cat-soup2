@@ -210,8 +210,6 @@ int main(void) {
             printf("캣타워에서 휴식을 취하며 기분이 좋아졌습니다!\n");
         }
 
-        // 상호작용 입력
-        chnmil = interact(chnmil);
 
         Sleep(1500);
         turn++;
