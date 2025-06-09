@@ -137,7 +137,7 @@ int main(void) {
 
         //2-5 상호작용 기능
         int choice = -1;
-        while (choice < 0 && choice > 2) {
+        while (choice < 0 || choice > 2) {
             printf("\n 무엇을 하시겠습니까?\n");
             printf("0. 아무것도 안 함\n1. 턱 긁어주기\n>> ");
             printf("2. 장난감 쥐 사용 (보유: %d개)\n>> ", toymouse);
@@ -186,7 +186,7 @@ int main(void) {
         //이동
         pos = catmove(pos, chnmil);
 
-        //수프 만들기(상호작용)
+        //수프 만들기(고양이가 행동하기)
         if (makesoup(pos)) {        
             soup++;
             if (gibun < 3) {
