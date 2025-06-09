@@ -97,32 +97,7 @@ int makesoup(int pos) {
     }
     return 0;
 }
-
-//2-5 상호작용 입력
-int interact(int chnmil) {
-    int choice = -1;
-    while (choice != 0 && choice != 1) {
-        printf("\n 무엇을 하시겠습니까?\n");
-        printf("0. 아무것도 안 함\n1. 턱 긁어주기\n>> ");
-        scanf_s("%d", &choice);
-    }
-    int dice = rand() % 6 + 1;
-
-    if (choice == 1) {
-        printf("고양이의 턱을 긁어주었습니다. 주사위: %d\n", dice);
-        if (dice >= 5 && chnmil < 4) {
-            printf("친밀도가 상승했습니다!\n");
-            return chnmil + 1;
-        }
-        else {
-            printf("고양이가 무반응입니다.\n");
-        }
-    }
-    else {
-        printf("아무것도 하지 않았습니다.\n");
-    }
-    return chnmil;
-}
+    
 
 //메인함수
 int main(void) {
@@ -160,6 +135,45 @@ int main(void) {
         //상태창
         statusandroom(name, soup, cp, gibun, chnmil, pos, cher, scratcher_pos, tower, tower_pos);
 
+        //2-5 상호작용 기능
+        int choice = -1;
+        while (choice < 0 && choice > 2) {
+            printf("\n 무엇을 하시겠습니까?\n");
+            printf("0. 아무것도 안 함\n1. 턱 긁어주기\n>> ");
+            printf("2. 장난감 쥐 사용 (보유: %d개)\n>> ", toymouse);
+            scanf_s("%d", &choice);
+        }
+        int dice = rand() % 6 + 1;
+
+        if (choice == 1) {
+            printf("고양이의 턱을 긁어주었습니다. 주사위: %d\n", dice);
+            if (dice >= 5 && chnmil < 4) {
+                printf("친밀도가 상승했습니다!\n");
+                return chnmil + 1;
+            }
+            else {
+                printf("고양이가 무반응입니다.\n");
+            }
+        }
+        else if (choice == 2) {
+            if (toymouse > 0) {
+                toymouse--;
+                if (gibun < 3) {
+                    gibun++;
+                    printf("장난감 쥐로 놀아주며 기분이 좋아졌습니다!\n");
+                }
+                else {
+                    printf("기분이 이미 최고입니다.\n");
+                }
+            }
+            else {
+                printf("장난감 쥐가 없습니다.\n");
+            }
+        }
+        else {
+            printf("아무것도 하지 않았습니다.\n");
+        }
+
         // 2-7 CP 생산
         int earned_cp = (gibun - 1 >= 0 ? gibun - 1 : 0) + chnmil;
         cp += earned_cp;
@@ -168,8 +182,10 @@ int main(void) {
 
         //기분
         gibun = gibunupdate(gibun);
+
         //이동
         pos = catmove(pos, chnmil);
+
         //수프 만들기(상호작용)
         if (makesoup(pos)) {        
             soup++;
