@@ -137,6 +137,29 @@ int main(void) {
         gibun = gibunupdate(gibun);
         //이동
         pos = catmove(pos, chnmil);
+        //수프 만들기(상호작용)
+        if (makesoup(pos)) {        
+            soup++;
+            if (gibun < 3) {
+                gibun++;
+                printf("기분이 회복됩니다!\n");
+            }
+            else {
+                printf("이미 기분이 최고입니다.\n");
+            }
+        }
+
+        // 스크래처 상호작용
+        if (cher && pos == scratcher_pos && gibun < 3) {
+            gibun++;
+            printf("스크래처에서 긁으며 기분이 좋아졌습니다!\n");
+        }
+
+        // 캣타워상호작용
+        if (tower && pos == tower_pos && gibun < 3) {
+            gibun++;
+            printf("캣타워에서 휴식을 취하며 기분이 좋아졌습니다!\n");
+        }
 
         Sleep(1500);
         turn++;
